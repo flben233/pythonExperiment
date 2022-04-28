@@ -24,10 +24,15 @@ package=com.shirakawatyu.test
 args=null
 ```
 等于号后填写自己相应的信息，
+
 name对应你的名字，
+
 path对应你学习过程中编写的文件的文件夹（这个由包决定），
+
 package对应软件包，
+
 如果你不知道如何path和package这两个参数请直接复制上述，并保持你的项目结构与我的完全一致（包括名字），当然，test文件夹中的东西你都可以删掉
+
 args对应自动输入的参数，如果你用不到请保持 null
 
 ## 下载
