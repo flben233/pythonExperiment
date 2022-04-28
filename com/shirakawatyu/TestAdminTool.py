@@ -2,7 +2,11 @@ import datetime
 import os
 import sys
 import time
+from io import BytesIO
+
+import PIL.Image
 import pygame
+import win32clipboard
 
 po = ""
 
@@ -16,7 +20,8 @@ def info(name1):
     print("测试台作者：ShirakawaTyu(方律奔)")
     print("测试台版本：1.2")
     return "\n\n---------以下信息由系统自动生成---------\n" + "执行时间：" + time.strftime(
-        "%Y-%m-%d %H:%M:%S") + "\n执行耗时：" + str(int((datetime.datetime.now() - startTime).total_seconds() * 1000)) + "ms" + "\n程序作者：" + name1 + "\n测试台作者：ShirakawaTyu(方律奔)" + "\n测试台版本：1.0"
+        "%Y-%m-%d %H:%M:%S") + "\n执行耗时：" + str(int((
+                                                               datetime.datetime.now() - startTime).total_seconds() * 1000)) + "ms" + "\n程序作者：" + name1 + "\n测试台作者：ShirakawaTyu(方律奔)" + "\n测试台版本：1.0"
 
 
 # 用于截获print()输出的类
@@ -73,12 +78,13 @@ class LoggerInput(object):
     def readline(self):
         global args
         message1 = ""
+        global po
         if args == "null":
             message1 = self.inp.readline()
+            po += "`!]" + message1
         else:
             message1 = args
-        global po
-        po += "`!]" + message1 + "\n"
+            po += "`!]" + message1 + "\n"
         return message1
 
     def flash(self):
@@ -99,11 +105,25 @@ class Config:
                 return x.replace(key + "=", "").strip()
 
 
+# 将图片放入剪贴板
+def imageToClip(filepath):
+    img = PIL.Image.open(filepath)
+    out = BytesIO()
+    img.save(out, "BMP")
+    data = out.getvalue()[14:]
+    out.close()
+    win32clipboard.OpenClipboard()
+    win32clipboard.EmptyClipboard()
+    win32clipboard.SetClipboardData(win32clipboard.CF_DIB, data)
+    win32clipboard.CloseClipboard()
+    print("\n提示：运行结果图已拷贝至剪贴板")
+
+
 c = Config()
-args = c.getVar("args")     # 这个变量用于自动传参，如果需要自动传入参数则在config改写这个变量，否则请填写null
-name = c.getVar("name")     # 作者姓名
-package = c.getVar("package") + "."     # 测试程序的包名
-path = c.getVar("path")     # 需要测试的程序的所在路径，可填写相对路径
+args = c.getVar("args")  # 这个变量用于自动传参，如果需要自动传入参数则在config改写这个变量，否则请填写null
+name = c.getVar("name")  # 作者姓名
+package = c.getVar("package") + "."  # 测试程序的包名
+path = c.getVar("path")  # 需要测试的程序的所在路径，可填写相对路径
 print("程序列表：")
 py = os.listdir(path)
 for i in py:
@@ -124,3 +144,4 @@ except ModuleNotFoundError:
     print("该程序不存在！")
 info(name)
 imageGenerator()
+imageToClip(".\\temp.png")
