@@ -5,8 +5,7 @@ def distance(a, b, x=0, y=0):
     return math.sqrt((a - x) * (a - x) + (b - y) * (b - y))
 
 
-print("输入")
-dot = input()
+dot = input("输入一个或者两个坐标：")
 dots = dot.split(",")
 if len(dots) == 2:
     print(distance(eval(dots[0]), eval(dots[1])))

@@ -59,10 +59,16 @@ def imageGenerator():
     image.blit(f.render(exe, True, "#c3c1c1", "#3c3f41"), (5, int((24 - f.get_height()) / 2)))
     pygame.draw.rect(image, "#747a80", (0, 20, len(exe) * 12, 3))
     for x in p:
-        if "`!]" in x:
+        if x.find("`!]") == 0:
             x = x.replace("`!]", "")
             f.set_italic(True)
             image.blit(f.render(x, True, "#007f00", "#282828"), (15, j))
+        elif x.find("`!]") > 0:
+            x = x.split("`!]")
+            f.set_italic(False)
+            image.blit(f.render(x[0], True, "#c3c1c1", "#282828"), (15, j))
+            f.set_italic(True)
+            image.blit(f.render(x[1], True, "#007f00", "#282828"), (15 + len(x[0]) * 13, j))
         else:
             f.set_italic(False)
             image.blit(f.render(x, True, "#c3c1c1", "#282828"), (15, j))
