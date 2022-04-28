@@ -1,3 +1,4 @@
 name=X07.方律奔
 package=com.shirakawatyu.test
 path=.\\test
+args=null
