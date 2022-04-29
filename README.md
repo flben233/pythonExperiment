@@ -16,7 +16,9 @@
 
 *已知问题：生成图片时不能正确处理 \t 这个符号 *
 
-你可以选择将我的整个项目结构全部复制下来，也可以根据我的结构自行修改，总之，你需要在 TestAdminTool.py 同级文件夹下创建一个名为 config 的配置文件，里面填入以下内容
+你可以选择将我的整个项目结构全部复制下来，也可以根据我的结构自行修改，然后作为一个项目导入pycharm
+
+总之，你需要在 TestAdminTool.py 同级文件夹下创建一个名为 config 的配置文件，里面填入以下内容
 ```
 name=
 path=.\\test
@@ -39,6 +41,7 @@ args对应自动输入的参数，如果你用不到请保持 null
 ## 下载
 
 可以选择直接clone，也可以[点击这里下载](https://github.com/flben233/pythonExperiment/archive/refs/heads/master.zip)
+
 然后使用下面的指令安装pygame,pillow,pywin32
 ```
 pip install pygame
