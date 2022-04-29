@@ -38,7 +38,8 @@ args对应自动输入的参数，如果你用不到请保持 null
 配置完成后将pycharm每次运行的程序改为本项目中的TestAdminTool即可
 ## 下载
 
-请直接clone，然后使用下面的指令安装pygame,pillow,pywin32
+可以选择直接clone，也可以[点击这里下载](https://github.com/flben233/pythonExperiment/archive/refs/heads/master.zip)
+然后使用下面的指令安装pygame,pillow,pywin32
 ```
 pip install pygame
 pip install pillow
