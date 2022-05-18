@@ -64,7 +64,7 @@ pip install pywin32
 
 ## 相关仓库
 
-[生成图片用的MSYHMONO字体](https://github.com/chenyium/Microsoft-Yahei-Mono)
+[MSYHMONO字体](https://github.com/chenyium/Microsoft-Yahei-Mono)
 
 ## 使用许可
 
