@@ -26,12 +26,15 @@ path=.\\test
 package=com.shirakawatyu.test
 args=null
 margin=
+font=
 ```
 等于号后填写自己相应的信息，
 
 name对应你的名字，
 
-margin对应生成的图片的页边距
+margin对应生成的图片的页边距，
+
+font后面填写字体文件名，需要包含扩展名，例如：Consolas.ttf，字体文件需要与TestAdminTool.py放在同一目录下
 
 path对应你学习过程中编写的程序的文件夹，
 
