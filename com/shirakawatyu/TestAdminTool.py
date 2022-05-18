@@ -40,25 +40,28 @@ class LoggerPrint(object):
 
 
 # 用于生成结果截图
-def imageGenerator(margin, font):
+def imageGenerator(margin, font, size):
     p = po.split("\n")
     biggest = 0
+    biggest2 = 0
     b = ""
     pygame.init()
-    f = pygame.font.Font(".\\" + font, 13)
+    f = pygame.font.Font(".\\" + font, size)
     for x in p:
         if f.size(x)[0] > biggest:
             biggest = f.size(x)[0]
+            biggest2 = f.size(x)[1]
             b = x
     # if biggest > 150:
     #     biggest = 150
     # print(b)
     j = 30
-    image = pygame.surface.Surface((biggest + margin * 2, (len(p) + 2) * 20))
+    k = biggest2 * 0.35
+    image = pygame.surface.Surface((biggest + margin * 2, (len(p) + 2) * (biggest2 + k)))
     image.fill("#282828")
-    pygame.draw.rect(image, "#3c3f41", (0, 0, biggest + margin * 2, 22))
+    pygame.draw.rect(image, "#3c3f41", (0, 0, biggest + margin * 2, biggest2 + 5))
     image.blit(f.render(exe, True, "#c3c1c1", "#3c3f41"), (5, int((24 - f.get_height()) / 2)))
-    pygame.draw.rect(image, "#747a80", (0, 20, len(exe) * 12, 3))
+    pygame.draw.rect(image, "#747a80", (0, biggest2 + 2, len(exe) * 12, 3))
     for x in p:
         if x.find("`!]") == 0:
             x = x.replace("`!]", "")
@@ -73,7 +76,7 @@ def imageGenerator(margin, font):
         else:
             f.set_italic(False)
             image.blit(f.render(x, True, "#c3c1c1", "#282828"), (15, j))
-        j += 20
+        j += biggest2 + k
     pygame.image.save(image, "./temp.png")
 
 
@@ -134,7 +137,7 @@ name = c.getVar("name")  # 作者姓名
 package = c.getVar("package") + "."  # 测试程序的包名
 path = c.getVar("path")  # 需要测试的程序的所在路径，可填写相对路径
 m = int(c.getVar("margin"))  # 文字边距
-f = c.getVar("font")
+fo = c.getVar("font")
 print("程序列表：")
 py = os.listdir(path)
 for i in py:
@@ -154,5 +157,5 @@ try:
 except ModuleNotFoundError:
     print("该程序不存在！")
 info(name)
-imageGenerator(m, f)
+imageGenerator(m, fo, 13)
 imageToClip(".\\temp.png")
