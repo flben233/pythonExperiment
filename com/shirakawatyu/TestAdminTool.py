@@ -59,9 +59,9 @@ def imageGenerator(margin, font, size):
     k = biggest2 * 0.35
     image = pygame.surface.Surface((biggest + margin * 2, (len(p) + 2) * (biggest2 + k)))
     image.fill("#282828")
-    pygame.draw.rect(image, "#3c3f41", (0, 0, biggest + margin * 2, biggest2 + 5))
+    pygame.draw.rect(image, "#3c3f41", (0, 0, biggest + margin * 2, biggest2 + k))
     image.blit(f.render(exe, True, "#c3c1c1", "#3c3f41"), (5, int((24 - f.get_height()) / 2)))
-    pygame.draw.rect(image, "#747a80", (0, biggest2 + 2, len(exe) * 12, 3))
+    pygame.draw.rect(image, "#747a80", (0, biggest2 + 2, len(exe) * 12, k - 2))
     for x in p:
         if x.find("`!]") == 0:
             x = x.replace("`!]", "")
