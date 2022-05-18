@@ -21,48 +21,55 @@ def info(name1):
     print("测试台版本：1.2")
     return "\n\n---------以下信息由系统自动生成---------\n" + "执行时间：" + time.strftime(
         "%Y-%m-%d %H:%M:%S") + "\n执行耗时：" + str(int((
-                                                               datetime.datetime.now() - startTime).total_seconds() * 1000)) + "ms" + "\n程序作者：" + name1 + "\n测试台作者：ShirakawaTyu(方律奔)" + "\n测试台版本：1.0"
+                                                               datetime.datetime.now() - startTime).total_seconds() * 1000)) + "ms" + "\n程序作者：" + name1 + "\n测试台作者：ShirakawaTyu(方律奔)" + "\n测试台版本：1.2"
 
 
 # 用于截获print()输出的类
 class LoggerPrint(object):
     def __init__(self, stream=sys.stdout):
         self.terminal = stream
-        # self.log = open(filename, 'a')
 
     def write(self, message):
         self.terminal.write(message)
         global po
         po += message
-        self.terminal.flush()  # 不启动缓冲,实时输出
-        # self.log.flush()
+        self.terminal.flush()
 
     def flush(self):
         pass
 
 
 # 用于生成结果截图
-def imageGenerator():
+def imageGenerator(margin):
     p = po.split("\n")
     biggest = 0
-    for x in p:
-        if len(x) > biggest:
-            biggest = len(x)
-    if biggest > 150:
-        biggest = 150
-    j = 30
+    b = ""
     pygame.init()
-    image = pygame.surface.Surface((biggest * 10, (len(p) + 2) * 20))
-    image.fill("#282828")
-    pygame.draw.rect(image, "#3c3f41", (0, 0, biggest * 12, 22))
     f = pygame.font.Font(".\\MSYHMONO.ttf", 13)
+    for x in p:
+        if f.size(x)[0] > biggest:
+            biggest = f.size(x)[0]
+            b = x
+    # if biggest > 150:
+    #     biggest = 150
+    # print(b)
+    j = 30
+    image = pygame.surface.Surface((biggest + margin * 2, (len(p) + 2) * 20))
+    image.fill("#282828")
+    pygame.draw.rect(image, "#3c3f41", (0, 0, biggest + margin * 2, 22))
     image.blit(f.render(exe, True, "#c3c1c1", "#3c3f41"), (5, int((24 - f.get_height()) / 2)))
     pygame.draw.rect(image, "#747a80", (0, 20, len(exe) * 12, 3))
     for x in p:
-        if "`!]" in x:
+        if x.find("`!]") == 0:
             x = x.replace("`!]", "")
             f.set_italic(True)
             image.blit(f.render(x, True, "#007f00", "#282828"), (15, j))
+        elif x.find("`!]") > 0:
+            x = x.split("`!]")
+            f.set_italic(False)
+            image.blit(f.render(x[0], True, "#c3c1c1", "#282828"), (15, j))
+            f.set_italic(True)
+            image.blit(f.render(x[1], True, "#007f00", "#282828"), (15 + len(x[0]) * 13, j))
         else:
             f.set_italic(False)
             image.blit(f.render(x, True, "#c3c1c1", "#282828"), (15, j))
@@ -103,6 +110,8 @@ class Config:
             if key in x:
                 flag = False
                 return x.replace(key + "=", "").strip()
+        if flag:
+            return None
 
 
 # 将图片放入剪贴板
@@ -132,8 +141,8 @@ for i in py:
 print("请输入需要测试的程序：")
 exe = input().strip().replace(".py", "")
 # 重定向输入输出流
-sys.stdout = LoggerPrint(sys.stdout)
-sys.stderr = LoggerPrint(sys.stderr)
+sys.stdout = LoggerPrint()
+sys.stderr = LoggerPrint()
 sys.stdin = LoggerInput()
 print()
 startTime = datetime.datetime.now()
@@ -143,5 +152,5 @@ try:
 except ModuleNotFoundError:
     print("该程序不存在！")
 info(name)
-imageGenerator()
+imageGenerator(int(c.getVar("margin")))
 imageToClip(".\\temp.png")
