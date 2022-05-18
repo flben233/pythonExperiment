@@ -49,6 +49,8 @@ args对应自动输入的参数，如果你用不到请保持 null
 
 [点击这里下载](https://github.com/flben233/pythonExperiment/releases)
 
+字体推荐使用等宽字体，如[思源黑体](https://github.com/adobe-fonts/source-han-sans)
+
 然后使用下面的指令安装pygame,pillow,pywin32
 ```
 pip install pygame
