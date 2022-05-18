@@ -40,12 +40,12 @@ class LoggerPrint(object):
 
 
 # 用于生成结果截图
-def imageGenerator(margin):
+def imageGenerator(margin, font):
     p = po.split("\n")
     biggest = 0
     b = ""
     pygame.init()
-    f = pygame.font.Font(".\\MSYHMONO.ttf", 13)
+    f = pygame.font.Font(".\\" + font, 13)
     for x in p:
         if f.size(x)[0] > biggest:
             biggest = f.size(x)[0]
@@ -133,7 +133,8 @@ args = c.getVar("args")  # 这个变量用于自动传参，如果需要自动�
 name = c.getVar("name")  # 作者姓名
 package = c.getVar("package") + "."  # 测试程序的包名
 path = c.getVar("path")  # 需要测试的程序的所在路径，可填写相对路径
-margin = int(c.getVar("margin"))  # 文字边距
+m = int(c.getVar("margin"))  # 文字边距
+f = c.getVar("font")
 print("程序列表：")
 py = os.listdir(path)
 for i in py:
@@ -153,5 +154,5 @@ try:
 except ModuleNotFoundError:
     print("该程序不存在！")
 info(name)
-imageGenerator(margin)
+imageGenerator(m, f)
 imageToClip(".\\temp.png")
