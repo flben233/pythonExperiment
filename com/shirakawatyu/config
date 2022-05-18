@@ -3,3 +3,4 @@ package=com.shirakawatyu.test
 path=.\\test
 args=null
 margin=15
+font=MSYHMONO.ttf
