@@ -66,7 +66,7 @@ pip install pywin32
 
 [MSYHMONO字体](https://github.com/chenyium/Microsoft-Yahei-Mono)
 
-(该字体未声明开源协议，使用本项目源码时请注意)
+(该字体未声明开源协议，使用本项目源码时请注意，开源部分仅限于python代码)
 
 ## 使用许可
 
