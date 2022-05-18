@@ -24,10 +24,13 @@ name=
 path=.\\test
 package=com.shirakawatyu.test
 args=null
+margin=
 ```
 等于号后填写自己相应的信息，
 
 name对应你的名字，
+
+margin对应生成的图片的页边距
 
 path对应你学习过程中编写的程序的文件夹，
 
