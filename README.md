@@ -10,7 +10,6 @@
 - [下载](#下载)
 - [如何贡献](#如何贡献)
 - [维护者](#维护者)
-- [相关仓库](#相关仓库)
 - [使用许可](#使用许可)
 
 
@@ -62,11 +61,6 @@ pip install pywin32
 
 非常欢迎你的加入！[提一个 Issue](https://github.com/flben233/pythonExperiment/issues/new) 或者提交一个 Pull Request。
 
-## 相关仓库
-
-[MSYHMONO字体](https://github.com/chenyium/Microsoft-Yahei-Mono)
-
-(该字体未声明开源协议，使用本项目源码时请注意，开源部分仅限于python代码)
 
 ## 使用许可
 
