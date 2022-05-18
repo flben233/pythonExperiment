@@ -44,7 +44,7 @@ args对应自动输入的参数，如果你用不到请保持 null
 配置完成后pycharm每次运行本项目中的TestAdminTool即可
 ## 下载
 
-[点击这里下载](https://github.com/flben233/pythonExperiment/releases))
+[点击这里下载](https://github.com/flben233/pythonExperiment/releases)
 
 然后使用下面的指令安装pygame,pillow,pywin32
 ```
