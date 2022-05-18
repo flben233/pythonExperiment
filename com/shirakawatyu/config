@@ -1,5 +1,6 @@
-name=X07.方律奔
+name=
 package=com.shirakawatyu.test
 path=.\\test
 args=null
-margin=15
+margin=
+font=
