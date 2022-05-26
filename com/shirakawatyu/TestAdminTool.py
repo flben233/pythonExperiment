@@ -132,6 +132,7 @@ def imageToClip(filepath):
 
 
 c = Config()
+cwd = os.getcwd()
 args = c.getVar("args")  # 这个变量用于自动传参，如果需要自动传入参数则在config改写这个变量，否则请填写null
 name = c.getVar("name")  # 作者姓名
 package = c.getVar("package") + "."  # 测试程序的包名
@@ -156,6 +157,7 @@ try:
     __import__(package + exe)
 except ModuleNotFoundError:
     print("该程序不存在！")
+os.chdir(cwd)
 info(name)
 imageGenerator(m, fo, 13)
 imageToClip(".\\temp.png")
